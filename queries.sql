@@ -48,7 +48,7 @@ and z.id_zam not in (
 -- RA: {rozvrh[id_zam, id_sme] ÷ rozvrh[id_sme]}*zamestnanec
 select *
 from zamestnanec z
-where z.id_zam = (
+where z.id_zam in (
     select id_zam
     from rozvrh
     group by id_zam
