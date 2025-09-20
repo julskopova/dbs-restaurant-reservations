@@ -1,4 +1,4 @@
--- D1: employees with HPP contract
+-- Q1: employees with HPP contract
 -- RA: {zamestnanec <* smlouva(typ_smlouvy='HPP')}[jmeno, prijmeni]
 select zamestnanec.jmeno, zamestnanec.prijmeni
 from zamestnanec
@@ -8,7 +8,7 @@ where smlouva.typ_smlouvy = 'HPP';
 
 
 
--- D2: Owners with no assigned manager 
+-- Q2: Owners with no assigned manager 
 -- RA: majitel[id_maj] !<* manazer[id_maj] * majitel
 select *
 from majitel
@@ -20,7 +20,7 @@ where id_maj not in (
 
 
 
--- D3: Employees who work only as bartenders (names)
+-- Q3: Employees who work only as bartenders (names)
 -- RA: {
 -- {zamestnanec <* pozice(nazev_pozice='Barman/ka')} \ 
 -- {zamestnanec <* pozice(nazev_pozice!='Barman/ka')}
@@ -44,7 +44,7 @@ and z.id_zam not in (
 
 
 
--- D4: Employees who work every day
+-- Q4: Employees who work every day
 -- RA: {rozvrh[id_zam, id_sme] ÷ rozvrh[id_sme]}*zamestnanec
 select *
 from zamestnanec z
@@ -58,7 +58,7 @@ where z.id_zam in (
 
 
 
--- Q4: Validation of D1 query
+-- Q5: Validation of D1 query
 -- RA: rozvrh[id_sme] \ rozvrh(id_zam='19')[id_sme]
 select id_sme
 from rozvrh
