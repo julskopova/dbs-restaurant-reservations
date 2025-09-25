@@ -13,3 +13,13 @@ All data in **synthetic** and the original course documentation is in **Czech**;
 - Relational design with PK/FK and constraints (DDL/DML)
 - 24 SQL queries: joins, GROUP BY/HAVING, set operations, subqueries, division pattern
 - One **transaction** demo (BEGIN/COMMIT/ROLLBACK)
+
+## ER diagram
+![ER diagram](dbs-course-project/er_diagram.png)
+
+
+-- Quick start (psql / pgAdmin)
+\i dbs-course-project/sql/create.generated.sql
+\i dbs-course-project/sql/insert.sql
+
+\i queries/00_run_all.sql
