@@ -16,10 +16,3 @@ All data in **synthetic** and the original course documentation is in **Czech**;
 
 ## ER diagram
 ![ER diagram](dbs-course-project/er_diagram.png)
-
-
--- Quick start (psql / pgAdmin)
-\i dbs-course-project/sql/create.generated.sql
-\i dbs-course-project/sql/insert.sql
-
-\i queries/00_run_all.sql
