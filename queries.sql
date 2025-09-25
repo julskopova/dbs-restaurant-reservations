@@ -6,6 +6,7 @@ join smlouva on zamestnanec.id_zam = smlouva.id_zam
 where smlouva.typ_smlouvy = 'HPP';
 
 
+-- =============================================================================================
 
 
 -- Q2: Owners with no assigned manager 
@@ -18,6 +19,7 @@ where id_maj not in (
 );
 
 
+-- =============================================================================================
 
 
 -- Q3: Employees who work only as bartenders (names)
@@ -42,6 +44,7 @@ and z.id_zam not in (
 );
 
 
+-- =============================================================================================
 
 
 -- Q4: Employees who work every day
@@ -56,6 +59,7 @@ where z.id_zam in (
 );
 
 
+-- =============================================================================================
 
 
 -- Q5: Validation of D1 query
@@ -70,6 +74,7 @@ from rozvrh z join zamestnanec using(id_zam)
 where id_zam = 19;
 
 
+-- =============================================================================================
 
 
 -- Q6: Payments and reservations paid by card (all columns)
@@ -80,7 +85,7 @@ join platba p on r.id_rez = p.id_rez
 where p.typ = 'kartou';
 
 
-
+-- =============================================================================================
 
 
 -- Q7: Reserved tables (all columns)
@@ -90,8 +95,7 @@ from stul s
 natural join rezervace r;
 
 
-
-
+-- =============================================================================================
 
 
 -- Q8: All employee–shift combinations
@@ -101,7 +105,7 @@ from zamestnanec z
 cross join smena s;
 
 
-
+-- =============================================================================================
 
 
 -- Q9: Tables without any reservation (number & capacity)
@@ -112,7 +116,7 @@ right join stul s on s.cislo_stolu = r.cislo_stolu
 where r.id_rez is null;
 
 
-
+-- =============================================================================================
 
 
 -- Q10: Managers and owners incl. owners without a manager
@@ -121,7 +125,7 @@ from manazer man
 full outer join majitel maj on man.id_maj = maj.id_maj;
 
 
-
+-- =============================================================================================
 
 
 -- Q11: Cash payments
@@ -134,7 +138,7 @@ where r.id_rez in (
 );
 
 
-
+-- =============================================================================================
 
 
 -- Q12: Employees working on Monday (names)
@@ -148,8 +152,7 @@ from (
 join zamestnanec z on zamestnanci_v_pondeli.id_zam = z.id_zam;
 
 
-
-
+-- =============================================================================================
 
 
 -- Q13: Shifts per employee (id, name, surname, total shifts)
@@ -160,6 +163,7 @@ select z.id_zam, z.jmeno, z.prijmeni,
 from zamestnanec z;
 
 
+-- =============================================================================================
 
 
 -- Q14: Unreserved table numbers (ascending)
@@ -173,8 +177,7 @@ where not exists (
 order by cislo_stolu ASC;
 
 
-
-
+-- =============================================================================================
 
 
 -- Q15: Table numbers: reserved OR capacity > 4
@@ -186,7 +189,7 @@ from stul
 where kapacita > 4;
 
 
-
+-- =============================================================================================
 
 
 -- Q16: Owners with no manager (names, alphabetical)
@@ -199,7 +202,7 @@ join manazer man on maj.id_maj = man.id_maj
 order by jmeno ASC;
 
 
-
+-- =============================================================================================
 
 
 -- Q17: Employees working as cleaners
@@ -212,7 +215,7 @@ select id_zam, jmeno, prijmeni from zamestnanec where id_zam in (
 );
 
 
-
+-- =============================================================================================
 
 
 -- Q18: Employees living in Liberec
@@ -237,7 +240,7 @@ where exists (
 );
 
 
-
+-- =============================================================================================
 
 
 -- Q19: Female employees with ≥2 shifts (names + count, desc)
@@ -250,6 +253,7 @@ having count(r.id_sme) > 1
 order by pocet_smen desc;
 
 
+-- =============================================================================================
 
 
 -- Q20: Create view: hardworking employees (>3 times per week)
@@ -262,6 +266,7 @@ where (select count (r.id_sme) as pocet_smen from rozvrh r where r.id_zam=z.id_z
 select * from pracovitiZamestnanci;
 
 
+-- =============================================================================================
 
 
 -- Q21: Select from view: hardworking employees (all columns)
@@ -270,8 +275,7 @@ from zamestnanec z
 where exists (select 1 from pracovitiZamestnanci p where p.id_zam = z.id_zam);
 
 
-
-
+-- =============================================================================================
 
 
 -- Q22: Delete employees present in the hardworking view
@@ -286,6 +290,7 @@ from pracovitiZamestnanci;
 rollback;
 
 
+-- =============================================================================================
 
 
 -- Q23: Insert random reservation (random customer/table/people, current timestamp)
@@ -314,6 +319,7 @@ from rezervace;
 rollback;
 
 
+-- =============================================================================================
 
 
 -- Q24: Transaction: decrease card payments by 200
