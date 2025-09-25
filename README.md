@@ -1,9 +1,15 @@
-# dbs-restaurant-reservations
-Normalized schema with integrity constraints, seed data, and non-trivial SQL queries.
+# Database Systems Course Project - Restaurant system (PostgreSQL)
+Normalized relational schema, seed data, and a set of non-trivial SQL queries for a restaurant reservation domain.
+
+**Note on the schema**
+- The base in DDL in `dbs-course-project/sql/create.generated.sql` was **exported from the university portal** (auto-generated).
+- I added my own SQL (queries and optional integrity tweaks).
+
+All data in **synthetic** and the original course documentation is in **Czech**; this README is the **English summary**.
+
+---
 
 ## Highlights
-- Relational design (PK/FK, UNIQUE/CHECK), DDL/DML; seed data
-- 20+ SQL queries: joins, GROUP BY/HAVING, set operations, subqueries, division pattern
-- Transaction-safe updates (COMMIT/ROLLBACK)
-- Docs in **Czech** (`docs/report.html`); this README is the **English summary**
-- Data is synthetic and anonymized
+- Relational design with PK/FK and constraints (DDL/DML)
+- 24 SQL queries: joins, GROUP BY/HAVING, set operations, subqueries, division pattern
+- One **transaction** demo (BEGIN/COMMIT/ROLLBACK)
